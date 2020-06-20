@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+
 import br.com.alura.forum.modelo.Topico;
 
 public class TopicoDto {
@@ -39,11 +41,7 @@ public class TopicoDto {
 
 
 
-	public static List<TopicoDto> converter(List<Topico> topicos) {
-		List<TopicoDto> topicosDto = new ArrayList<TopicoDto>() ;
-		for(Topico topico : topicos)
-			topicosDto.add(new TopicoDto(topico));
-
-		return topicosDto;
+	public static Page<TopicoDto> converter(Page<Topico> topicos) {
+		return topicos.map(TopicoDto::new);
 	}
 }
